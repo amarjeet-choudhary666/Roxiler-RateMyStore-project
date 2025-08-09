@@ -1,5 +1,17 @@
 # 🏪 Store Rating Management System
 
+**Credentails:- 
+Admin:- 
+  email:- amarjeetchoudhary647@gmail.com
+  password:- Manish@786
+StoreOwner:- 
+  email:- amarjeetchoudhary6471@gmail.com
+  password:- Manish@786
+User:- 
+  email:- amarjeetchoudhary64711@gmail.com
+  password:- Manish@786**
+
+
 A comprehensive full-stack application for managing store ratings, user authentication, and administrative operations. Built with React, Node.js, Express, and PostgreSQL.
 
 ## 🚀 Features
