@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SYSTEM_ADMIN
+  NORMAL_USER
+  STORE_OWNER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(60)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  address   String   @db.VarChar(400)
+  role      UserRole @default(NORMAL_USER)
+  refreshToken String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  ratings Rating[]
+  store   Store?
+
+  @@map("users")
+}
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  address   String   @db.VarChar(400)
+  ownerId   String   @unique
+  refreshToken String? @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  owner   User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ratings Rating[]
+
+  @@map("stores")
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  rating    Int      @db.SmallInt // 1-5 rating
+  userId    String
+  storeId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  // Ensure one rating per user per store
+  @@unique([userId, storeId])
+  @@map("ratings")
+}
