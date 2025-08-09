@@ -2,15 +2,15 @@
 
 ### Credentails:- 
 
-Admin:- 
+**Admin:- 
   **email:- amarjeetchoudhary647@gmail.com
   **password:- Manish@786
 
-StoreOwner:- 
+**StoreOwner:- 
   **email:- amarjeetchoudhary6471@gmail.com
   **password:- Manish@786
 
-User:- 
+**User:- 
   **email:- amarjeetchoudhary64711@gmail.com
   **password:- Manish@786
 
